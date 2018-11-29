@@ -94,6 +94,7 @@ function findItem() {
         // console.log(answer.productID);
         // console.log(answer.stock);
         var productID = parseInt(answer.product);
+        
         // console.log(productID);
         var productName = results.productName;
         connection.query(
@@ -104,7 +105,7 @@ function findItem() {
             var product = results[0].product_name;
             var productCost = results[0].price;
             var quantity = parseInt(results[0].stock_quantity);
-            var requestedQuantity = answer.stock;
+            let requestedQuantity = parseInt(answer.stock);
             //* ///////////////////////////////////////////////////////////////////////////
             //* Confirm Order
             //* ///////////////////////////////////////////////////////////////////////////
@@ -128,36 +129,44 @@ function findItem() {
                   // console.log(quantity);
                   if (requestedQuantity <= quantity) {
                     // checkout();
-
-                    var newQuantity = quantity - answer.stock;
+                    // console.log("quantity1: " + quantity);
+                    // console.log("answer_stock: (now quantity) ", (requestedQuantity + 1));
+                    let newQuantity = quantity - requestedQuantity;
+                    console.log("new QUANTITY: " + newQuantity)
+                    // console.log("requestedQuantity" + requestedQuantity)
                     // console.log(newQuantity);
                     console.log('\n');
                     console.log("-----------------------------------");
                     console.log(
                       "Total Cost is: $" + requestedQuantity * productCost
                     );
+                    console.log("-----------------------------------")
+                    updateInventory();
+            //* ///////////////////////////////////////////////////////////////////////////
+            //* Update Inventory 
+            //* ///////////////////////////////////////////////////////////////////////////
+            function updateInventory() {
+              console.log("New Inventory for " + product+ ": " + newQuantity + " units");
+              connection.query(
+                "UPDATE products SET stock_quantity=" +
+                //!!!!! use question marks
+                  newQuantity +
+                  " WHERE id=" +
+                  productID,
+                function(err, results) {
+                  if (err) throw err;
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//! Need to properly update the inventory
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    // updateInventory();
-
-
-            // function updateInventory() {
-            //   connection.query(
-            //     "UPDATE products SET stock_quantity=" +
-            //       newQuantity +
-            //       " WHERE id=" +
-            //       productID,
-            //     function(err, results) {
-            //       if (err) throw err;
-
-             
-            //       console.log(results[0].stock_quantity);
-            //     }
-            //   );
-            // }
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+                  console.log("(Records updated - " + newQuantity+ " units)");
+                  console.log("\n" + "********************************");
+                  console.log(" _____________THANKS!______________");
+                  console.log(" ___________COME_AGAIN!____________");
+                  console.log("********************************" + "\n");
+                  connection.end();
+                }
+              );
+            }
+         
                   } else {
                     console.log("-------------------------------");
                     console.log("We dont have many in stock");
