@@ -126,16 +126,17 @@ function addInventory() {
         }
       ])
       .then(function(answer) {
-        // console.log(answer.product)
-        // console.log(results);
-        var productID = parseInt(answer.product);
-        var productSelection = productID - 1;
+        console.log(answer.product)
+        console.log(results);
+        let productID = parseInt(answer.product);
+        let productSelection = productID - 1;
+        let additionalQuantity = parseInt(answer.additionInv);
 
-        var productName = results[productSelection].product_name;
-
+        let productName = results[productSelection].product_name;
+console.log("productName: " + productName)
         console.log(
           "You've added " +
-            answer.additionInv +
+            additionalQuantity +
             " products to the " +
             productName +
             " inventory"
@@ -147,6 +148,9 @@ function addInventory() {
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //! Need to properly update the inventory
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        console.log("newQuantity: " + newQuantity);
+        console.log("productID: " + productID);
+        
         function updateInventory() {
           connection.query(
             "UPDATE products SET stock_quantity=" +
@@ -154,7 +158,7 @@ function addInventory() {
               " WHERE id=" +
               productID,
             function(err, results) {
-              if (err) throw err;
+              // if (err) throw err;
               console.log(results);
             }
           );

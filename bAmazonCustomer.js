@@ -132,13 +132,16 @@ function findItem() {
                     // console.log("quantity1: " + quantity);
                     // console.log("answer_stock: (now quantity) ", (requestedQuantity + 1));
                     let newQuantity = quantity - requestedQuantity;
-                    console.log("new QUANTITY: " + newQuantity)
+                    console.log("new QUANTITY: " + newQuantity);
                     // console.log("requestedQuantity" + requestedQuantity)
                     // console.log(newQuantity);
+                    let totalCost = (requestedQuantity * productCost).toFixed(2);
+
+
                     console.log('\n');
                     console.log("-----------------------------------");
                     console.log(
-                      "Total Cost is: $" + requestedQuantity * productCost
+                      "Total Cost is: $" + totalCost
                     );
                     console.log("-----------------------------------")
                     updateInventory();
@@ -159,8 +162,8 @@ function findItem() {
         
                   console.log("(Records updated - " + newQuantity+ " units)");
                   console.log("\n" + "********************************");
-                  console.log(" _____________THANKS!______________");
-                  console.log(" ___________COME_AGAIN!____________");
+                  console.log(" ___________THANKS!____________");
+                  console.log(" _________COME_AGAIN!__________");
                   console.log("********************************" + "\n");
                   connection.end();
                 }
