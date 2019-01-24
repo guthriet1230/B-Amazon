@@ -126,14 +126,15 @@ function addInventory() {
         }
       ])
       .then(function(answer) {
-        console.log(answer.product)
-        console.log(results);
+        // console.log(answer.product)
+        // console.log(results);
         let productID = parseInt(answer.product);
         let productSelection = productID - 1;
         let additionalQuantity = parseInt(answer.additionInv);
 
         let productName = results[productSelection].product_name;
-console.log("productName: " + productName)
+// console.log("productName: " + productName)
+        console.log("---------------------------------------------");        
         console.log(
           "You've added " +
             additionalQuantity +
@@ -148,33 +149,36 @@ console.log("productName: " + productName)
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //! Need to properly update the inventory
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log("newQuantity: " + newQuantity);
-        console.log("productID: " + productID);
+        console.log("---------------------------------------------");
+        // console.log("productID: " + productID);
+        // console.log("newQuantity: " + newQuantity);
+        // console.log("---------------------------------------------");
         
+    
+
         function updateInventory() {
           connection.query(
-            "UPDATE products SET stock_quantity=" +
-              newQuantity +
-              " WHERE id=" +
-              productID,
+            'UPDATE products SET stock_quantity=stock_quantity+${results.quanitty} WHERE id=${results.productID}',
             function(err, results) {
               // if (err) throw err;
               console.log(results);
             }
           );
         }
+
         updateInventory();
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         console.log(
           "The " +
-            productName +
-            " new inventory total is: " +
+            productName + " (Product ID:" + productID +") new inventory total is: " +
             newQuantity +
             " items"
+            
         );
+     
       });
-
+      // productSale()
     connection.end();
   });
 }
