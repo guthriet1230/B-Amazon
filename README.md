@@ -9,13 +9,22 @@ Technology Used
 - MySQL: Database
 - Console.table: Results Formatting
 
-App - Purchasing an Item
+Customer - Purchasing an Item
 -----
 ![Screenshot](./images/bAmazonCustomer_img.png)
 
-App - Managing the Store
+Manager - View Available Products
 ----- 
 ![Screenshot](./images/bAmazonManager_img_ProductsforSale.png)
+
+Manager - View Low Inventory Items
+----- 
 ![Screenshot](./images/bAmazonManager_img_ViewLowInventory.png)
+
+Manager - Add to an Item's Inventory
+----- 
 ![Screenshot](./images/bAmazonManager_img_AddtoInventory.png)
+
+Manager - Add a New Product for Sale
+----- 
 ![Screenshot](./images/bAmazonManager_img_AddNewProduct.png)
