@@ -15,7 +15,7 @@ App - Purchasing an Item
 
 App - Managing the Store
 ----- 
-![Screenshot](.images/bAmazonManager_img_ProductsforSale.png)
-![Screenshot](.images/bAmazonManager_img_ViewLowInventory.png)
-![Screenshot](.images/bAmazonManager_img_AddtoInventory.png)
-![Screenshot](.images/bAmazonManager_img_AddNewProduct.png)
+![Screenshot](./images/bAmazonManager_img_ProductsforSale.png)
+![Screenshot](./images/bAmazonManager_img_ViewLowInventory.png)
+![Screenshot](./images/bAmazonManager_img_AddtoInventory.png)
+![Screenshot](./images/bAmazonManager_img_AddNewProduct.png)
